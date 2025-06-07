@@ -56,8 +56,8 @@ export default function ProductsPage() {
   }, [searchTerm, allProducts]);
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-300">
-      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 animate-in fade-in slide-in-from-top-8 duration-500">
+    <div className="space-y-10 animate-in fade-in duration-300">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-6 animate-in fade-in slide-in-from-top-8 duration-500">
         <div className="flex items-center">
           <ShoppingBag className="h-8 w-8 text-primary mr-3" />
           <h1 className="text-3xl font-headline font-semibold">{t('allProducts')}</h1>
@@ -83,17 +83,17 @@ export default function ProductsPage() {
       )}
 
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {Array.from({ length: 8 }).map((_, index) => <ProductCardSkeleton key={index} />)}
         </div>
       ) : filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       ) : (
-        <div className="text-center py-10 animate-in fade-in duration-500">
+        <div className="text-center py-16 animate-in fade-in duration-500">
           <p className="text-xl text-muted-foreground">
             {searchTerm ? t('noProductsFound') : "No products available at the moment."}
           </p>

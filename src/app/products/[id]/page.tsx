@@ -63,14 +63,14 @@ export default function ProductDetailPage() {
   if (loading || authLoading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <Skeleton className="h-10 w-1/3 mb-6" />
-        <div className="grid md:grid-cols-2 gap-8">
-          <Skeleton className="w-full h-96 rounded-lg" />
-          <div className="space-y-4">
-            <Skeleton className="h-8 w-3/4" />
-            <Skeleton className="h-20 w-full" />
-            <Skeleton className="h-8 w-1/4" />
-            <Skeleton className="h-12 w-1/2" />
+        <Skeleton className="h-10 w-1/3 mb-8" />
+        <div className="grid md:grid-cols-2 gap-10">
+          <Skeleton className="w-full h-80 md:h-[500px] rounded-lg" />
+          <div className="space-y-6">
+            <Skeleton className="h-10 w-3/4" />
+            <Skeleton className="h-24 w-full" />
+            <Skeleton className="h-10 w-1/4" />
+            <Skeleton className="h-12 w-full sm:w-2/3" />
           </div>
         </div>
       </div>
@@ -79,25 +79,25 @@ export default function ProductDetailPage() {
 
   if (error) {
     return (
-       <div className="flex flex-col items-center justify-center min-h-[60vh]">
-        <Alert variant="destructive" className="max-w-md">
+       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+        <Alert variant="destructive" className="max-w-md w-full">
           <AlertTriangle className="h-4 w-4" />
           <AlertTitle>{t('error')}</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
-        <Button onClick={() => router.push('/products')} className="mt-4">{t('allProducts')}</Button>
+        <Button onClick={() => router.push('/products')} className="mt-8">{t('allProducts')}</Button>
       </div>
     );
   }
 
   if (!product) {
      return (
-       <div className="flex flex-col items-center justify-center min-h-[60vh]">
-        <Alert variant="destructive" className="max-w-md">
+       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+        <Alert variant="destructive" className="max-w-md w-full">
           <AlertTriangle className="h-4 w-4" />
           <AlertTitle>{t('productNotFound')}</AlertTitle>
         </Alert>
-        <Button onClick={() => router.push('/products')} className="mt-4">{t('allProducts')}</Button>
+        <Button onClick={() => router.push('/products')} className="mt-8">{t('allProducts')}</Button>
       </div>
     );
   }
@@ -110,10 +110,10 @@ export default function ProductDetailPage() {
   const imageSrc = product.imageUrl && product.imageUrl.trim() !== '' ? product.imageUrl : "https://placehold.co/800x600.png";
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 animate-in fade-in duration-500">
       <Card className="overflow-hidden shadow-xl">
-        <div className="grid md:grid-cols-2 gap-0 md:gap-6">
-          <div className="relative aspect-[4/3] md:aspect-auto w-full md:h-full min-h-[300px] md:min-h-[400px]">
+        <div className="grid md:grid-cols-2 gap-0 md:gap-x-10">
+          <div className="relative aspect-[4/3] w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] md:h-full">
             <Image
               src={imageSrc}
               alt={product.title}
@@ -121,35 +121,43 @@ export default function ProductDetailPage() {
               sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover"
               data-ai-hint={product.dataAiHint || "product detail image"}
-              priority 
+              priority
             />
           </div>
-          <div className="flex flex-col">
-            <CardHeader className="pt-6 px-6">
-              <CardTitle className="text-3xl lg:text-4xl font-headline mb-3">{product.title}</CardTitle>
+          <div className="flex flex-col p-6 md:p-8">
+            <CardHeader className="p-0 mb-4">
+              <CardTitle className="text-3xl sm:text-4xl lg:text-5xl font-headline mb-3">{product.title}</CardTitle>
             </CardHeader>
-            <CardContent className="px-6 flex-grow">
-              <p className="text-muted-foreground text-base md:text-lg mb-6 leading-relaxed">{product.description}</p>
-              <p className="text-3xl font-semibold text-primary mb-6">{formattedPrice}</p>
+            <CardContent className="p-0 flex-grow mb-8">
+              <p className="text-muted-foreground text-base md:text-lg leading-relaxed">{product.description}</p>
             </CardContent>
-            <CardFooter className="p-6 border-t md:border-t-0 md:mt-auto">
-              <div className="flex flex-col sm:flex-row gap-3 w-full">
-                <Button size="lg" className="flex-1" onClick={handleAddToCart}>
-                  <ShoppingCart className="mr-2 h-5 w-5" /> {t('addToCart')}
-                </Button>
-                {isAdmin && user && (
-                  <Button asChild variant="outline" size="lg" className="flex-1">
-                    <Link href={`/products/${product.id}/edit`}>
-                      <Edit className="mr-2 h-5 w-5" /> {t('editProduct')}
-                    </Link>
+            <div className="mt-auto space-y-6">
+              <p className="text-3xl sm:text-4xl font-semibold text-primary">{formattedPrice}</p>
+              <CardFooter className="p-0">
+                <div className="flex flex-col sm:flex-row gap-3 w-full">
+                  <Button 
+                    onClick={handleAddToCart} 
+                    className="flex-1 text-base h-10 px-4 py-2 sm:h-11 sm:px-8"
+                  >
+                    <ShoppingCart className="mr-2 h-5 w-5" /> {t('addToCart')}
                   </Button>
-                )}
-              </div>
-            </CardFooter>
+                  {isAdmin && user && (
+                    <Button 
+                      asChild 
+                      variant="outline" 
+                      className="flex-1 text-base h-10 px-4 py-2 sm:h-11 sm:px-8"
+                    >
+                      <Link href={`/products/${product.id}/edit`}>
+                        <Edit className="mr-2 h-5 w-5" /> {t('editProduct')}
+                      </Link>
+                    </Button>
+                  )}
+                </div>
+              </CardFooter>
+            </div>
           </div>
         </div>
       </Card>
     </div>
   );
 }
-

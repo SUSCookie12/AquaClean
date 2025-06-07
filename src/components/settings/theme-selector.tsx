@@ -1,9 +1,10 @@
+
 'use client';
 
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/hooks/use-language';
-import { Sun, Moon, Laptop } from 'lucide-react';
+import { Sun, Moon, Laptop } from 'lucide-react'; // Removed Palette icon
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function ThemeSelector() {
@@ -22,7 +23,7 @@ export default function ThemeSelector() {
         <CardTitle>{t('theme')}</CardTitle>
         <CardDescription>Select your preferred application theme.</CardDescription>
       </CardHeader>
-      <CardContent className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <CardContent className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {themes.map((item) => (
           <Button
             key={item.value}

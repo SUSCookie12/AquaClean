@@ -41,24 +41,24 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           />
         </Link>
       </CardHeader>
-      <CardContent className="flex-grow p-4">
-        <CardTitle className="text-lg font-headline mb-2 h-14 line-clamp-2">
+      <CardContent className="flex-grow p-4 space-y-2">
+        <CardTitle className="text-lg font-headline mb-1 h-14 line-clamp-2">
           <Link href={`/products/${product.id}`} className="hover:underline">
             {product.title}
           </Link>
         </CardTitle>
-        <p className="text-sm text-muted-foreground line-clamp-3 h-[3.75rem] mb-2">
+        <p className="text-sm text-muted-foreground line-clamp-3 h-[3.75rem] mb-1">
           {product.description}
         </p>
-        <p className="text-xl font-semibold text-primary">{formattedPrice}</p>
+        <p className="text-xl font-semibold text-primary pt-1">{formattedPrice}</p>
       </CardContent>
       <CardFooter className="p-4 border-t flex flex-col sm:flex-row gap-2">
-        <Button asChild className="w-full sm:flex-1" variant="outline">
+        <Button asChild className="w-full h-9 px-3 text-sm sm:h-10 sm:px-4 sm:flex-1" variant="outline">
           <Link href={`/products/${product.id}`}> 
             <Eye className="mr-2 h-4 w-4" /> {t('viewProduct')}
           </Link>
         </Button>
-        <Button onClick={handleAddToCart} className="w-full sm:flex-1" variant="default">
+        <Button onClick={handleAddToCart} className="w-full h-9 px-3 text-sm sm:h-10 sm:px-4 sm:flex-1" variant="default">
           <ShoppingCart className="mr-2 h-4 w-4" /> {t('addToCart')}
         </Button>
       </CardFooter>
@@ -67,4 +67,3 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 };
 
 export default ProductCard;
-

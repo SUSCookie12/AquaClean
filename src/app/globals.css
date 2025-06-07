@@ -1,35 +1,36 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 190 83% 92%; /* Light Ocean Blue #E0F7FA */
-    --foreground: 210 10% 23%; /* Dark Slate Blue for contrast */
-    --card: 190 83% 95%; /* Slightly off-white blue */
+    --background: 190 83% 92%; /* Default Light: Light Ocean Blue */
+    --foreground: 210 10% 23%; /* Default Light: Dark Slate Blue */
+    --card: 190 83% 95%;
     --card-foreground: 210 10% 23%;
     --popover: 190 83% 95%;
     --popover-foreground: 210 10% 23%;
-    --primary: 203 65% 57%; /* Ocean Blue #49A6DA */
-    --primary-foreground: 0 0% 100%; /* White */
-    --secondary: 180 40% 80%; /* Light Teal/Aqua */
+    --primary: 203 65% 57%; /* Default Light: Ocean Blue */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 40% 80%; /* Default Light: Light Teal/Aqua */
     --secondary-foreground: 210 10% 23%;
-    --muted: 190 50% 88%; /* Muted Light Blue */
+    --muted: 190 50% 88%;
     --muted-foreground: 210 10% 45%;
-    --accent: 147 46% 49%; /* Sea Green #3CB371 */
-    --accent-foreground: 0 0% 100%; /* White */
+    --accent: 147 46% 49%; /* Default Light: Sea Green */
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 190 40% 80%; /* Light Aqua border */
-    --input: 190 40% 85%; /* Slightly lighter aqua for input */
-    --ring: 203 65% 57%; /* Ocean Blue for ring */
+    --border: 190 40% 80%;
+    --input: 190 40% 85%;
+    --ring: 203 65% 57%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%; /* Default, can be overridden if sidebar is used extensively */
+    --sidebar-background: 0 0% 98%; 
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
@@ -38,20 +39,21 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
-    --background: 210 25% 15%; /* Dark Navy Blue */
-    --foreground: 190 83% 92%; /* Light Ocean Blue text */
-    --card: 210 25% 20%; /* Slightly lighter Navy for cards */
+    --background: 210 25% 15%; /* Default Dark: Dark Navy Blue */
+    --foreground: 190 83% 92%; /* Default Dark: Light Ocean Blue text */
+    --card: 210 25% 20%;
     --card-foreground: 190 83% 92%;
     --popover: 210 25% 20%;
     --popover-foreground: 190 83% 92%;
-    --primary: 203 65% 62%; /* Slightly lighter Ocean Blue for dark mode */
+    --primary: 203 65% 62%; /* Default Dark: Slightly lighter Ocean Blue */
     --primary-foreground: 0 0% 100%; 
-    --secondary: 200 30% 30%; /* Darker Muted Aqua */
+    --secondary: 200 30% 30%;
     --secondary-foreground: 190 83% 92%;
-    --muted: 200 30% 25%; /* Very Dark Muted Aqua */
+    --muted: 200 30% 25%;
     --muted-foreground: 190 50% 80%;
-    --accent: 147 46% 55%; /* Slightly lighter Sea Green */
+    --accent: 147 46% 55%; /* Default Dark: Slightly lighter Sea Green */
     --accent-foreground: 0 0% 100%; 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
@@ -75,6 +77,9 @@
 }
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
   * {
     @apply border-border;
   }

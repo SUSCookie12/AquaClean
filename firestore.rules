@@ -1,0 +1,49 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper function to check if the requesting user is an admin
+    function isAdmin() {
+      // Check if the user is authenticated
+      let isSignedIn = request.auth != null;
+      // Access the user's document in the 'users' collection
+      // and check if their 'roles.admin' field is true.
+      // This assumes 'admin' role is stored under a 'roles' map.
+      let userDoc = get(/databases/$(database)/documents/users/$(request.auth.uid));
+      return isSignedIn && userDoc.data.roles.admin == true;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      // Allow users to read their own document
+      // Allow admins to read any user document
+      allow read: if request.auth.uid == userId || isAdmin();
+      // Allow users to create their own document (e.g., on first sign-in)
+      // Allow admins to update any user document (e.g., for changing roles)
+      allow write: if request.auth.uid == userId || isAdmin();
+    }
+
+    // Products collection
+    match /products/{productId} {
+      // Allow anyone to read products
+      allow read: if true;
+      // Allow only admins to create, update, or delete products
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Site Management collection (for homepage settings like popular products)
+    match /siteManagement/{docId} {
+      // Allow only admins to read and write to site management documents
+      // Specifically, this covers 'siteManagement/homepage'
+      allow read, write: if isAdmin();
+    }
+
+    // Add other rules for your collections here if needed
+    // For example, if you had an 'orders' collection:
+    // match /orders/{orderId} {
+    //   allow read, write: if request.auth.uid == resource.data.userId || isAdmin();
+    // }
+  }
+}

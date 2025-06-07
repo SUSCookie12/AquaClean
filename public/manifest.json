@@ -1,0 +1,25 @@
+{
+  "name": "AquaClean",
+  "short_name": "AquaClean",
+  "description": "Discover a new standard of clean with AquaClean. High-quality detergents and cleaning solutions for your home.",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#E0F7FA",
+  "theme_color": "#49A6DA",
+  "scope": "/",
+  "orientation": "portrait-primary"
+}
